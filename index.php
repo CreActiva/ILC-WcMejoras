@@ -68,7 +68,6 @@ function displays_cart_products_feature_image() {
             // $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->ID ), 'single-post-thumbnail' );
             echo $product->get_image();
             echo $product->name;
-			      echo  $product->price;
             // to display only the first product image uncomment the line bellow
             // break;
         }
