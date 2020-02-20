@@ -56,3 +56,22 @@ add_filter( 'woocommerce_add_to_cart_redirect', 'bbloomer_redirect_checkout_add_
 /*Eliminar mensaje de "agregado a carrito"*/
 add_filter( 'wc_add_to_cart_message_html', '__return_null' );
 /*=====================================*/
+
+/* Mostrar imagen de producto en el checkout */
+add_action('woocommerce_before_checkout_form', 'displays_cart_products_feature_image');
+function displays_cart_products_feature_image() {
+    foreach ( WC()->cart->get_cart() as $cart_item ) {
+        $item = $cart_item['data'];
+        //print_r($item);
+        if(!empty($item)){
+            $product = new WC_product($item->id);
+            // $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->ID ), 'single-post-thumbnail' );
+            echo $product->get_image();
+            echo $product->name;
+			      echo  $product->price;
+            // to display only the first product image uncomment the line bellow
+            // break;
+        }
+    }
+}
+/* ========================================= */
